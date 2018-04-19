@@ -14,6 +14,7 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
 
     @Test
     public void hasMatchUser(){
+        System.out.println(userService);
         boolean b1 = userService.hasMatchUser("admin","123456");
         boolean b2 = userService.hasMatchUser("admin","38383");
         assertTrue(b1);
@@ -24,5 +25,6 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
     public void findUserByUserName(){
         User user = userService.findUserByUserName("admin");
         assertEquals(user.getUserName(),"admin");
+        userService.loginSuccess(user);
     }
 }

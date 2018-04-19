@@ -8,24 +8,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 @Service
 public class UserService {
+    static Logger logger = Logger.getLogger(UserService.class.getName());
     @Autowired
     private UserDao userDao;
     @Autowired
     private LoginLogDao loginLogDao;
 
     public boolean hasMatchUser(String userName,String password){
+        logger.info("aaaaavvvvaaaa");
         int matchCount = userDao.getMatchCount(userName,password);
         return matchCount>0;
     }
 
     public User findUserByUserName(String userName){
+        logger.info("aaaaarrrr");
         return userDao.findUserByUserName(userName);
     }
 
     @Transactional
     public void loginSuccess(User user){
+        logger.info("aaaaaaaaaaa");
         user.setCredits(5 + user.getCredits());
         LoginLog loginLog = new LoginLog();
         loginLog.setUserId(user.getUserId());

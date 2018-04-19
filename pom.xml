@@ -10,6 +10,7 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>chapter2</module>
+    <module>chapter4</module>
   </modules>
 
   <name>spring4</name>
@@ -107,6 +108,7 @@
         <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>
+
     </dependencies>
   </dependencyManagement>
 
