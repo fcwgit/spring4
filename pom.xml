@@ -11,6 +11,8 @@
   <modules>
     <module>chapter2</module>
     <module>chapter4</module>
+      <module>chapter6</module>
+      <module>chapter7</module>
   </modules>
 
   <name>spring4</name>
@@ -106,7 +108,6 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>${junit.version}</version>
-        <scope>test</scope>
       </dependency>
 
     </dependencies>
