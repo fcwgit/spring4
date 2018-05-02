@@ -13,6 +13,7 @@
     <module>chapter4</module>
       <module>chapter6</module>
       <module>chapter7</module>
+      <module>chapter8</module>
   </modules>
 
   <name>spring4</name>
@@ -36,6 +37,10 @@
     <slf4j.version>1.7.5</slf4j.version>
     <testng.version>6.8.7</testng.version>
     <junit.version>4.11</junit.version>
+
+    <asm.version>4.0</asm.version>
+    <cglib.version>3.0</cglib.version>
+    <aopalliance.version>1.0</aopalliance.version>
 
   </properties>
 
