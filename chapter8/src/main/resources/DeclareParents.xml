@@ -13,11 +13,7 @@
        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
 	<!--基于AOP命名空间的切面驱动器-->
-	<!--<aop:aspectj-autoproxy/>-->
-	<!--目标bean-->
+	<aop:aspectj-autoproxy/>
 	<bean id="waiter" class="cn.xyz.aspectj.NaiveWaiter"/>
-	<!--使用了@Aspect注解的切面类-->
-	<bean class="cn.xyz.aspectj.PreGreetingAspect"/>
-	<!--自动代理创建器，自动将@Aspect注解切面类注入目标bean中-->
-	<bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"/>
+	<bean class="cn.xyz.aspectj.EnableSellerAspect"/>
 </beans>
