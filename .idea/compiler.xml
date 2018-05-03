@@ -14,12 +14,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="chapter2" target="1.8" />
-      <module name="chapter4" target="1.8" />
-      <module name="chapter6" target="1.8" />
-      <module name="chapter7" target="1.8" />
-      <module name="chapter8" target="1.8" />
-      <module name="spring4" target="1.8" />
+      <module name="chapter2" target="1.7" />
+      <module name="chapter4" target="1.7" />
+      <module name="chapter6" target="1.7" />
+      <module name="chapter7" target="1.7" />
+      <module name="chapter8" target="1.7" />
+      <module name="spring4" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

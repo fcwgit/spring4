@@ -1,6 +1,6 @@
 package cn.xyz.smart;
 
-import com.smart.anno.NeedTest;
+import cn.xyz.annotation.NeedTest;
 
 @Monitorable
 public class NaiveWaiter implements Waiter {
