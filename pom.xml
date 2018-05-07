@@ -14,6 +14,9 @@
       <module>chapter6</module>
       <module>chapter7</module>
       <module>chapter8</module>
+      <module>chapter9</module>
+    <module>chapter10</module>
+    <module>chapter11</module>
   </modules>
 
   <name>spring4</name>
@@ -41,12 +44,18 @@
     <asm.version>4.0</asm.version>
     <cglib.version>3.0</cglib.version>
     <aopalliance.version>1.0</aopalliance.version>
+    <groovy.version>2.3.6</groovy.version>
 
   </properties>
 
   <dependencyManagement>
     <dependencies>
       <!-- spring 依赖-->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-beans</artifactId>
@@ -70,6 +79,11 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-expression</artifactId>
         <version>${spring.version}</version>
       </dependency>
 
@@ -114,6 +128,12 @@
         <artifactId>junit</artifactId>
         <version>${junit.version}</version>
         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.codehaus.groovy</groupId>
+        <artifactId>groovy-all</artifactId>
+        <version>${groovy.version}</version>
       </dependency>
 
     </dependencies>
