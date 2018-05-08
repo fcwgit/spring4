@@ -12,7 +12,9 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ForumDao {
@@ -121,12 +123,32 @@ public class ForumDao {
     }
 
     public int getUserTopicNum(int userId){
-        String sql = "{call P_GET_TOPIC(?,?)";
+        String sql = "{call P_GET_TOPIC_NUM(?,?)}";
         Integer num = jdbcTemplate.execute(sql, new CallableStatementCallback<Integer>() {
             @Override
             public Integer doInCallableStatement(CallableStatement cs) throws SQLException, DataAccessException {
                 cs.setInt(1,userId);
                 cs.registerOutParameter(2,Types.INTEGER);
+                cs.execute();
+                System.out.println("11111111111111");
+                return cs.getInt(2);
+            }
+        });
+        return num;
+    }
+
+    public int getUserTopicNum2(int userId){
+        String sql = "{call P_GET_TOPIC_NUM(?,?)}";
+        CallableStatementCreatorFactory factory = new CallableStatementCreatorFactory(sql);
+        factory.addParameter(new SqlParameter("userId",Types.INTEGER));
+        factory.addParameter(new SqlOutParameter("topicNum",Types.INTEGER));
+        Map<String,Integer> map = new HashMap<>();
+        map.put("userId",userId);
+        CallableStatementCreator creator = factory.newCallableStatementCreator(map);
+
+        Integer num = jdbcTemplate.execute(creator, new CallableStatementCallback<Integer>() {
+            @Override
+            public Integer doInCallableStatement(CallableStatement cs) throws SQLException, DataAccessException {
                 cs.execute();
                 return cs.getInt(2);
             }
@@ -151,7 +173,7 @@ public class ForumDao {
 
         //List<Forum> forumList = forumDao.getForums2();
         //System.out.println(forumList);
-        int num = forumDao.getUserTopicNum(1);
+        int num = forumDao.getUserTopicNum2(1);
         System.out.println(num);
     }
 
