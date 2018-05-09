@@ -1,16 +1,23 @@
 package cn.xyz.jdbc;
 
+import cn.xyz.domain.Forum;
 import cn.xyz.domain.Post;
 import jdk.internal.util.xml.impl.Input;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.support.AbstractLobCreatingPreparedStatementCallback;
 import org.springframework.jdbc.core.support.AbstractLobStreamingResultSetExtractor;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.jdbc.support.incrementer.DataFieldMaxValueIncrementer;
 import org.springframework.jdbc.support.lob.LobCreator;
 import org.springframework.jdbc.support.lob.LobHandler;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.FileCopyUtils;
 
@@ -26,10 +33,16 @@ import java.util.List;
 @Repository
 public class PostDao {
     @Autowired
+    private DataFieldMaxValueIncrementer incrementer;
+
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
     private LobHandler lobHandler;
+
+    @Autowired
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public void getNativeConn(){
         Connection connection = null;
@@ -94,4 +107,47 @@ public class PostDao {
             }
         });
     }
+
+    public SqlRowSet getTopicRowSet(int userId){
+        String sql = "SELECT topic_id,topic_title FROM t_topic WHERE user_id=?";
+        return jdbcTemplate.queryForRowSet(sql,userId);
+    }
+
+    public void addForumByNamedParams(Forum forum){
+        String sql = "INSERT INTO t_forum(forum_name,forum_desc)VALUES(:forumName,:forumDesc)";
+        SqlParameterSource sqlParameterSource = new BeanPropertySqlParameterSource(forum);
+        namedParameterJdbcTemplate.update(sql,sqlParameterSource);
+    }
+
+    public void addForumByMapParams(Forum forum){
+        String sql = "INSERT INTO t_forum(forum_name,forum_desc)VALUES(:forumName,:forumDesc)";
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("forumName",forum.getForumName())
+                .addValue("forumDesc",forum.getForumDesc());
+        namedParameterJdbcTemplate.update(sql,sqlParameterSource);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

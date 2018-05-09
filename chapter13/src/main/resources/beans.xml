@@ -23,4 +23,39 @@
 	<bean id="nativeJdbcExtractor" lazy-init="true" class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor"/>
 	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler" lazy-init="true"
 		  p:nativeJdbcExtractor-ref="nativeJdbcExtractor"/>
+	<bean id="incrementer" class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer"
+		  p:incrementerName="seq_post_id"
+		  p:dataSource-ref="dataSource"/>
+
+	<bean id="incrementer2" class="org.springframework.jdbc.support.incrementer.MySQLMaxValueIncrementer"
+		  p:incrementerName="t_post_id"
+		  p:columnName="sequence_id"
+		  p:cacheSize="10"
+		  p:dataSource-ref="dataSource"/>
+	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="dataSource"/>
+	</bean>
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
