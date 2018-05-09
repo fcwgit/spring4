@@ -20,6 +20,10 @@
       <module>chapter12</module>
       <module>chapter13</module>
       <module>chapter14</module>
+      <module>chapter15</module>
+      <module>chapter16</module>
+    <module>chapter16</module>
+    <module>chapter161</module>
   </modules>
 
   <name>spring4</name>
