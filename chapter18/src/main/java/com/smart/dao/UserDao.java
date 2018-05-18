@@ -1,7 +1,6 @@
 package com.smart.dao;
 
 import com.smart.domain.User;
-import com.sun.xml.internal.rngom.parse.host.Base;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

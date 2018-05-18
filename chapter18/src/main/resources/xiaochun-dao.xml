@@ -9,7 +9,7 @@
     <!--扫描com.smart.dao包下所有标注@Repository的DAO组件-->
     <context:component-scan base-package="com.smart.dao"/>
     <!--引入定义jdbc连接的属性文件-->
-    <context:property-placeholder location="jdbc.properties"/>
+    <context:property-placeholder location="classpath:jdbc.properties"/>
 
     <!--定义数据源-->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
